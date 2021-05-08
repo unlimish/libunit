@@ -2,4 +2,5 @@
 */
 !*/
 !framework/src/main.c
+!framework/inc/framework.h
 !.gitignore
