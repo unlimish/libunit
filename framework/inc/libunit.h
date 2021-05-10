@@ -1,7 +1,5 @@
 #ifndef LIBUNIT_H
 #define LIBUNIT_H
-#ifndef FRAMEWORK_H
-# define FRAMEWORK_H
 
 #include <sys/wait.h>
 #include <signal.h>
