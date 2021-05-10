@@ -2,7 +2,7 @@
 */
 !*/
 !framework/src/main.c
-!framework/inc/framework.h
+!framework/inc/libunit.h
 !framework/Makefile
 !framework/src/framework.c
 !.gitignore

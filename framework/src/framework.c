@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <stdio.h>
+#include "../inc/libunit.h"
 
 int test_atoi_1(void)
 {
