@@ -5,13 +5,6 @@
 #include <sys/wait.h>
 #include <stdio.h>
 
-typedef struct		s_unit_test
-{
-    int					(* func)();
-    char				*title;
-    struct s_unit_test	*next;
-}					t_unit_test;
-
 int test_atoi_1(void)
 {
     if (0 == atoi("aaa_0"))
@@ -47,7 +40,7 @@ int launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配
 
     while(*testlist)
     {
-        pid = fork(); 
+        pid = fork();
         if(pid < 0)
             exit(0);
         if(pid == 0)
@@ -68,7 +61,7 @@ int main()
     testlist = NULL;
     load_test(&testlist, "Test 1", test_atoi_1);
     launch_tests(&testlist);
-    
+
 //    printf("return from freamwork[%d]\n", freamwork());
 
     //printf("%d\n", ret);

@@ -9,4 +9,11 @@
 # define SEGV -2;
 # define BUSE -3;
 
+typedef struct		s_unit_test
+{
+    int					(* func)();
+    char				*title;
+    struct s_unit_test	*next;
+}					t_unit_test;
+
 #endif
