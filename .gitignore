@@ -3,4 +3,6 @@
 !*/
 !framework/src/main.c
 !framework/inc/framework.h
+!framework/Makefile
+!framework/src/framework.c
 !.gitignore
