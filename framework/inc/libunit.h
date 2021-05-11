@@ -3,6 +3,8 @@
 
 #include <sys/wait.h>
 #include <signal.h>
+#include <string.h>
+#include "../../real_tests/libft/libft.h"
 
 # define OK 0;
 # define KO -1;
