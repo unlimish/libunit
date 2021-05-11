@@ -103,7 +103,7 @@ int launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配
 
     while(*testlist)
     {
-		printf("title:[%s]\n", (*testlist)->title);
+//		printf("title:[%s]\n", (*testlist)->title);
         pid = fork();
         if(pid < 0)
             exit(0);
@@ -111,19 +111,21 @@ int launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配
             exit((*testlist)->func());
 		wait_pid = wait(&status);
 		if (WIFEXITED(status))
+		{
 			ret = WEXITSTATUS(status);
+//			printf("existed\n");
+		}
 		if (WIFSIGNALED(status))
+		{
 			ret = WTERMSIG(status);
+//			printf("signaled\n");
+		}
 		printf("ret: [%d]\n", ret);
 		tmp = *testlist;
 		*testlist = (*testlist)->next;
 		free(tmp->title);
 		free(tmp);
     }
-    if (WIFEXITED(status))
-        return ((char)WEXITSTATUS(status));
-    if (WIFSIGNALED(status))
-        return (WTERMSIG(status));
     return (0);
 }
 
