@@ -4,13 +4,7 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <stdio.h>
-
-typedef struct		s_unit_test
-{
-		int					(* func)();
-		char				*title;
-		struct s_unit_test	*next;
-}					t_unit_test;
+#include "../inc/libunit.h"
 
 int test_atoi_0(void)
 {
@@ -87,7 +81,7 @@ int launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配
 
     while(*testlist)
     {
-        pid = fork(); 
+        pid = fork();
         if(pid < 0)
             exit(0);
         if(pid == 0)
