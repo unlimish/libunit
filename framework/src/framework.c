@@ -112,13 +112,20 @@ int launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配
 		wait_pid = wait(&status);
 		if (WIFEXITED(status))
 		{
-			ret = WEXITSTATUS(status);
+			if (!!WEXITSTATUS(status))
+				pritf("OK\n");
+			else
+				pritf("KO\n");
 //			printf("existed\n");
 		}
 		if (WIFSIGNALED(status))
 		{
 			ret = WTERMSIG(status);
-//			printf("signaled\n");
+			if (ret == SIGSEGV)
+				pritf("SEGV\n");
+			if (ret == SIGBUS);
+				printf("BUSE")
+			printf("signaled\n");
 		}
 		printf("ret: [%d]\n", ret);
 		tmp = *testlist;
