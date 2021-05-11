@@ -35,7 +35,13 @@ int test_segv(void)
 	*a = 'a';
 	return(0);
 }
-
+#include <sys/mman.h>
+int test_buserr(void) {
+    FILE *f = tmpfile();
+    int *m = (int*)mmap(0, 4, PROT_WRITE, MAP_PRIVATE, fileno(f), 0);
+    *m = 0;
+    return 0;
+}
 void load_test(t_unit_test **testlist, char *title, int (* test_func)());
 int launch_tests(t_unit_test **testlist);
 
@@ -103,7 +109,6 @@ int launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配
 
     while(*testlist)
     {
-//		printf("title:[%s]\n", (*testlist)->title);
         pid = fork();
         if(pid < 0)
             exit(0);
@@ -113,19 +118,17 @@ int launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配
 		if (WIFEXITED(status))
 		{
 			if (!!WEXITSTATUS(status))
-				pritf("OK\n");
+				printf("OK\n");
 			else
-				pritf("KO\n");
-//			printf("existed\n");
+				printf("KO\n");
 		}
 		if (WIFSIGNALED(status))
 		{
 			ret = WTERMSIG(status);
 			if (ret == SIGSEGV)
-				pritf("SEGV\n");
-			if (ret == SIGBUS);
-				printf("BUSE")
-			printf("signaled\n");
+				printf("SEGV  ~~~~\n");
+			if (ret == SIGBUS)
+				printf("BUSE  ####\n");
 		}
 		printf("ret: [%d]\n", ret);
 		tmp = *testlist;
@@ -145,5 +148,6 @@ int main()
     load_test(&testlist, "Test 1", test_atoi_1);
     load_test(&testlist, "Test error", test_err);
     load_test(&testlist, "Test segv", test_segv);
+    load_test(&testlist, "Test buserr", test_buserr);
     launch_tests(&testlist);
 }
