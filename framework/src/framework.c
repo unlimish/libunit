@@ -7,9 +7,9 @@
 
 typedef struct		s_unit_test
 {
-	int					(* func)();
-	char				*title;
-	struct s_unit_test	*next;
+		int					(* func)();
+		char				*title;
+		struct s_unit_test	*next;
 }					t_unit_test;
 
 int test_atoi_0(void)
@@ -22,10 +22,10 @@ int test_atoi_0(void)
 
 int test_atoi_1(void)
 {
-	printf("test_here!\n");
-	if (1 == atoi("1aaa_0"))
-		return(0);
-	return(1);
+		printf("test_here!\n");
+		if (1 == atoi("1aaa_0"))
+			return(0);
+		return(1);
 }
 
 void load_test(t_unit_test **testlist, char *title, int (* test_func)());
