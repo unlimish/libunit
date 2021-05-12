@@ -13,6 +13,7 @@ typedef struct		s_unit_test
 {
     int					(* func)();
     char				*title;
+    char                *result;
     struct s_unit_test	*next;
 }					t_unit_test;
 
