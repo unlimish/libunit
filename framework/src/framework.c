@@ -13,7 +13,7 @@ void	load_test(t_unit_test **testlist, char *title, int (*test_func)())
 	new->title = ft_strdup(title);
 	new->func = test_func;
 	if (!new)
-		exit(0); //abort for malloc error;
+		exit(0);
 	if (*testlist == NULL)
 		*testlist = new;
 	else
@@ -24,41 +24,36 @@ void	load_test(t_unit_test **testlist, char *title, int (*test_func)())
 	}
 }
 
-int	launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配列なり、リストなり)が引数*/)
+int execute_test(t_unit_test *iter)
 {
 	pid_t	pid;
-	int	status;
-	int	ret;
-	t_unit_test	*iter;
+	int		status;
+	int		ret;
 
-	iter = *testlist;
-	while (iter)
+	pid = fork();
+	if (pid < 0)
+		exit(0);
+	if (pid == 0)
+		exit(iter->func());
+	wait(&status);
+	if (WIFEXITED(status))
 	{
-		pid = fork();
-		if (pid < 0)
-			exit(0);
-		if (pid == 0)
-			exit(iter->func());
-		wait(&status);
-		if (WIFEXITED(status))
-		{
-			if (!!WEXITSTATUS(status))
-				iter->result = ft_strdup("OK");
-			else
-				iter->result = ft_strdup("KO");
-		}
-		if (WIFSIGNALED(status))
-		{
-			ret = WTERMSIG(status);
-			if (ret == SIGSEGV)
-				iter->result = ft_strdup("SEGV");
-			if (ret == SIGBUS)
-				iter->result = ft_strdup("BUSE");
-		}
-		iter = iter->next;
+		if (!!WEXITSTATUS(status))
+			iter->result = ft_strdup("OK");
+		else
+			iter->result = ft_strdup("KO");
+	}
+	if (WIFSIGNALED(status))
+	{
+		ret = WTERMSIG(status);
+		if (ret == SIGSEGV)
+			iter->result = ft_strdup("SEGV");
+		if (ret == SIGBUS)
+			iter->result = ft_strdup("BUSE");
 	}
 	return (0);
 }
+
 
 void	disp_result(t_unit_test *testlist)
 {
@@ -94,4 +89,19 @@ void	free_testlist(t_unit_test **testlist)
 		free(iter_tmp->title);
 		free(iter_tmp);
 	}
+}
+
+int	launch_tests(t_unit_test **testlist)
+{
+	t_unit_test	*iter;
+
+	iter = *testlist;
+	while (iter)
+	{
+		execute_test(iter);
+		iter = iter->next;
+	}
+	disp_result(*testlist);
+	free_testlist(testlist);
+	return (0);
 }
