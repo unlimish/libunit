@@ -1,47 +1,4 @@
-#include <string.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/wait.h>
-#include <stdio.h>
 #include "../inc/libunit.h"
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t	i;
-
-	i = 0;
-	while (*(s1 + i) == *(s2 + i) && *(s1 + i) != 0)
-		i++;
-	return ((unsigned char)*(s1 + i) - (unsigned char)*(s2 + i));
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (*(s + i) != 0)
-		i++;
-	return (i);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	int		strlen;
-	char	*return_p;
-	char	*dest;
-
-	strlen = ft_strlen(s1);
-	return_p = malloc(sizeof(char) * strlen + 1);
-	if (!return_p)
-		return (return_p);
-	dest = return_p;
-	while (*s1)
-		*dest++ = *s1++;
-	*dest = 0;
-	return (return_p);
-}
 
 void	load_test(t_unit_test **testlist, char *title, int (*test_func)())
 {
@@ -110,10 +67,10 @@ void	disp_result(t_unit_test *testlist)
 
 	ok_cnt = 0;
 	all_cnt = 0;
-	while(testlist)
+	while (testlist)
 	{
 		all_cnt++;
-		printf("> %s : [%s]\n",testlist->title, testlist->result);
+		printf("> %s : [%s]\n", testlist->title, testlist->result);
 		if (ft_strcmp("OK", testlist->result))
 			ok_cnt++;
 		testlist = testlist->next;
@@ -125,7 +82,7 @@ void	free_testlist(t_unit_test **testlist)
 {
 	t_unit_test	*iter_tmp;
 	t_unit_test	*iter;
-	
+
 	if (!testlist)
 		return ;
 	iter = *testlist;

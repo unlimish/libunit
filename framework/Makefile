@@ -1,6 +1,7 @@
 NAME = libunit.a
 
 SRCS = src/framework.c
+SRCS += src/framework-utils.c
 
 OBJS = ${SRCS:.c=.o}
 
