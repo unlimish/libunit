@@ -28,7 +28,7 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strdup(const char *s1)
 {
-	int	strlen;
+	int		strlen;
 	char	*return_p;
 	char	*dest;
 
@@ -43,9 +43,9 @@ char	*ft_strdup(const char *s1)
 	return (return_p);
 }
 
-void	load_test(t_unit_test **testlist, char *title, int (* test_func)())
+void	load_test(t_unit_test **testlist, char *title, int (*test_func)())
 {
-    t_unit_test	*new;
+	t_unit_test	*new;
 	t_unit_test	*iter;
 
 	printf("title : [%s]\n", title);

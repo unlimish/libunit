@@ -9,15 +9,15 @@
 # define SEGV -2;
 # define BUSE -3;
 
-typedef struct	s_unit_test
+typedef struct s_unit_test
 {
-	int					(* func)();
-	char				*title;
-	char				*result;
+	int	(*func)();
+	char	*title;
+	char	*result;
 	struct s_unit_test	*next;
 }	t_unit_test;
 
-void	load_test(t_unit_test **testlist, char *title, int (* test_func)());
+void	load_test(t_unit_test **testlist, char *title, int (*test_func)());
 int		launch_tests(t_unit_test **testlist);
 
 #endif
