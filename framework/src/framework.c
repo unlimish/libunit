@@ -52,7 +52,6 @@ int	execute_test(t_unit_test *iter)
 	return (0);
 }
 
-
 void	disp_result(t_unit_test *testlist)
 {
 	int	ok_cnt;
