@@ -50,21 +50,21 @@ void	load_test(t_unit_test **testlist, char *title, int (*test_func)())
 
 	printf("title : [%s]\n", title);
 	iter = *testlist;
-    new = malloc(sizeof(t_unit_test));
+	new = malloc(sizeof(t_unit_test));
 	new->next = NULL;
 	new->result = NULL;
 	new->title = ft_strdup(title);
 	new->func = test_func;
-    if (!new)
-        exit(0); //abort for malloc error;
-    if (*testlist == NULL)
-        *testlist = new;
-    else
-    {
-        while (iter->next)
-            iter = iter->next;
-        iter->next = new;
-    }
+	if (!new)
+		exit(0); //abort for malloc error;
+	if (*testlist == NULL)
+		*testlist = new;
+	else
+	{
+		while (iter->next)
+			iter = iter->next;
+		iter->next = new;
+	}
 }
 
 int	launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配列なり、リストなり)が引数*/)
@@ -75,13 +75,13 @@ int	launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配
 	t_unit_test	*iter;
 
 	iter = *testlist;
-    while (iter)
-    {
-        pid = fork();
-        if (pid < 0)
-            exit(0);
-        if (pid == 0)
-            exit(iter->func());
+	while (iter)
+	{
+		pid = fork();
+		if (pid < 0)
+			exit(0);
+		if (pid == 0)
+			exit(iter->func());
 		wait(&status);
 		if (WIFEXITED(status))
 		{
@@ -99,8 +99,8 @@ int	launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配
 				iter->result = ft_strdup("BUSE");
 		}
 		iter = iter->next;
-    }
-    return (0);
+	}
+	return (0);
 }
 
 void	disp_result(t_unit_test *testlist)
@@ -111,7 +111,7 @@ void	disp_result(t_unit_test *testlist)
 	ok_cnt = 0;
 	all_cnt = 0;
 	while(testlist)
-    {
+	{
 		all_cnt++;
 		printf("> %s : [%s]\n",testlist->title, testlist->result);
 		if (ft_strcmp("OK", testlist->result))
