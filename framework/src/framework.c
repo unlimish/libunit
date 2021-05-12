@@ -6,44 +6,18 @@
 #include <stdio.h>
 #include "../inc/libunit.h"
 
-int test_atoi_0(void)
-{
-	printf("test_here!\n");
-	if (0 == atoi("aaa_0"))
-		return(0);
-	return(1);
-}
-
-int test_atoi_1(void)
-{
-		printf("test_here!\n");
-		if (1 == atoi("1aaa_0"))
-			return(0);
-		return(1);
-}
-
-int test_err(void)
-{
-	return(1);
-}
-
-int test_segv(void)
-{
-	char *a;
-
-	a = NULL;
-	*a = 'a';
-	return(0);
-}
-#include <sys/mman.h>
-int test_buserr(void) {
-    FILE *f = tmpfile();
-    int *m = (int*)mmap(0, 4, PROT_WRITE, MAP_PRIVATE, fileno(f), 0);
-    *m = 0;
-    return 0;
-}
 void load_test(t_unit_test **testlist, char *title, int (* test_func)());
 int launch_tests(t_unit_test **testlist);
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t i;
+
+	i = 0;
+	while (*(s1 + i) == *(s2 + i) && *(s1 + i) != 0)
+		i++;
+	return ((unsigned char)*(s1 + i) - (unsigned char)*(s2 + i));
+}
 
 size_t	ft_strlen(const char *s)
 {
@@ -81,18 +55,15 @@ void load_test(t_unit_test **testlist, char *title, int (* test_func)())
 	iter = *testlist;
     new = malloc(sizeof(t_unit_test));
 	new->next = NULL;
+	new->result = NULL;
 	new->title = ft_strdup(title);
 	new->func = test_func;
     if (!new)
         exit(0); //abort for malloc error;
     if (*testlist == NULL)
-	{
-		printf("koko\n");
         *testlist = new;
-	}
     else
     {
-		printf("kokoB\n");
         while (iter->next)
             iter = iter->next;
         iter->next = new;
@@ -102,52 +73,72 @@ void load_test(t_unit_test **testlist, char *title, int (* test_func)())
 int launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配列なり、リストなり)が引数*/)
 {
     pid_t   pid;
-    pid_t   wait_pid;
     int status;
 	int ret;
-	t_unit_test *tmp;
+	t_unit_test *iter;
 
-    while(*testlist)
+	iter = *testlist;
+
+    while(iter)
     {
         pid = fork();
         if(pid < 0)
             exit(0);
         if(pid == 0)
-            exit((*testlist)->func());
-		wait_pid = wait(&status);
+            exit(iter->func());
+		wait(&status);
 		if (WIFEXITED(status))
 		{
 			if (!!WEXITSTATUS(status))
-				printf("OK\n");
+				iter->result = ft_strdup("OK");
 			else
-				printf("KO\n");
+				iter->result = ft_strdup("KO");
 		}
 		if (WIFSIGNALED(status))
 		{
 			ret = WTERMSIG(status);
 			if (ret == SIGSEGV)
-				printf("SEGV  ~~~~\n");
+				iter->result = ft_strdup("SEGV");
 			if (ret == SIGBUS)
-				printf("BUSE  ####\n");
+				iter->result = ft_strdup("BUSE");
 		}
-		printf("ret: [%d]\n", ret);
-		tmp = *testlist;
-		*testlist = (*testlist)->next;
-		free(tmp->title);
-		free(tmp);
+		iter = iter->next;
     }
     return (0);
 }
 
-int main()
+void disp_result(t_unit_test *testlist)
 {
-    t_unit_test *testlist;
+	int ok_cnt;
+	int all_cnt;
 
-    testlist = NULL;
-    load_test(&testlist, "Test 0", test_atoi_0);
-    load_test(&testlist, "Test 1", test_atoi_1);
-    load_test(&testlist, "Test error", test_err);
-    load_test(&testlist, "Test segv", test_segv);
-    load_test(&testlist, "Test buserr", test_buserr);
-    launch_tests(&testlist);
+	ok_cnt = 0;
+	all_cnt = 0;
+	while(testlist)
+    {
+		all_cnt++;
+		printf("> %s : [%s]\n",testlist->title, testlist->result);
+		if (ft_strcmp("OK", testlist->result))
+			ok_cnt++;
+		testlist = testlist->next;
+	}
+	printf("%d/%d tests checkted\n", ok_cnt, all_cnt);
+}
+
+void free_testlist(t_unit_test **testlist)
+{
+	t_unit_test *iter_tmp;
+	t_unit_test *iter;
+	
+	if(!testlist)
+		return ;
+	iter = *testlist;
+	while (iter)
+	{
+		iter_tmp = iter;
+		iter = iter->next;
+		free(iter_tmp->result);
+		free(iter_tmp->title);
+		free(iter_tmp);
+	}
 }
