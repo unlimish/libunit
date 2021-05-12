@@ -16,7 +16,7 @@
 
 typedef struct s_unit_test
 {
-	int	(*func)();
+	int					(*func)();
 	char				*title;
 	char				*result;
 	struct s_unit_test	*next;
