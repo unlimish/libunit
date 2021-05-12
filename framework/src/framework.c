@@ -24,11 +24,10 @@ void	load_test(t_unit_test **testlist, char *title, int (*test_func)())
 	}
 }
 
-int execute_test(t_unit_test *iter)
+int	execute_test(t_unit_test *iter)
 {
 	pid_t	pid;
 	int		status;
-	int		ret;
 
 	pid = fork();
 	if (pid < 0)
@@ -45,10 +44,9 @@ int execute_test(t_unit_test *iter)
 	}
 	if (WIFSIGNALED(status))
 	{
-		ret = WTERMSIG(status);
-		if (ret == SIGSEGV)
+		if (WTERMSIG(status) == SIGSEGV)
 			iter->result = ft_strdup("SEGV");
-		if (ret == SIGBUS)
+		if (WTERMSIG(status) == SIGBUS)
 			iter->result = ft_strdup("BUSE");
 	}
 	return (0);
