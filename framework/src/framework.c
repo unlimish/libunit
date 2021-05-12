@@ -6,12 +6,9 @@
 #include <stdio.h>
 #include "../inc/libunit.h"
 
-void load_test(t_unit_test **testlist, char *title, int (* test_func)());
-int launch_tests(t_unit_test **testlist);
-
 int	ft_strcmp(const char *s1, const char *s2)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (*(s1 + i) == *(s2 + i) && *(s1 + i) != 0)
@@ -21,7 +18,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 size_t	ft_strlen(const char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (*(s + i) != 0)
@@ -31,7 +28,7 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strdup(const char *s1)
 {
-	int		strlen;
+	int	strlen;
 	char	*return_p;
 	char	*dest;
 
@@ -46,10 +43,10 @@ char	*ft_strdup(const char *s1)
 	return (return_p);
 }
 
-void load_test(t_unit_test **testlist, char *title, int (* test_func)())
+void	load_test(t_unit_test **testlist, char *title, int (* test_func)())
 {
-    t_unit_test *new;
-	t_unit_test *iter;
+    t_unit_test	*new;
+	t_unit_test	*iter;
 
 	printf("title : [%s]\n", title);
 	iter = *testlist;
@@ -70,21 +67,20 @@ void load_test(t_unit_test **testlist, char *title, int (* test_func)())
     }
 }
 
-int launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配列なり、リストなり)が引数*/)
+int	launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配列なり、リストなり)が引数*/)
 {
-    pid_t   pid;
-    int status;
-	int ret;
-	t_unit_test *iter;
+	pid_t	pid;
+	int	status;
+	int	ret;
+	t_unit_test	*iter;
 
 	iter = *testlist;
-
-    while(iter)
+    while (iter)
     {
         pid = fork();
-        if(pid < 0)
+        if (pid < 0)
             exit(0);
-        if(pid == 0)
+        if (pid == 0)
             exit(iter->func());
 		wait(&status);
 		if (WIFEXITED(status))
@@ -107,10 +103,10 @@ int launch_tests(t_unit_test **testlist) //freamwork(/*複数のテスト(の配
     return (0);
 }
 
-void disp_result(t_unit_test *testlist)
+void	disp_result(t_unit_test *testlist)
 {
-	int ok_cnt;
-	int all_cnt;
+	int	ok_cnt;
+	int	all_cnt;
 
 	ok_cnt = 0;
 	all_cnt = 0;
@@ -125,12 +121,12 @@ void disp_result(t_unit_test *testlist)
 	printf("%d/%d tests checkted\n", ok_cnt, all_cnt);
 }
 
-void free_testlist(t_unit_test **testlist)
+void	free_testlist(t_unit_test **testlist)
 {
-	t_unit_test *iter_tmp;
-	t_unit_test *iter;
+	t_unit_test	*iter_tmp;
+	t_unit_test	*iter;
 	
-	if(!testlist)
+	if (!testlist)
 		return ;
 	iter = *testlist;
 	while (iter)
