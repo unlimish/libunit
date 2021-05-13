@@ -3,5 +3,5 @@
 !*/
 !**/*.c
 !**/*.h
-!*/Makefile
+!**/Makefile
 !.gitignore
