@@ -5,7 +5,7 @@ void	load_test(t_unit_test **testlist, char *title, int (*test_func)())
 	t_unit_test	*new;
 	t_unit_test	*iter;
 
-	printf("title : [%s]\n", title);
+	printf("loaded : [%s]\n", title);
 	iter = *testlist;
 	new = malloc(sizeof(t_unit_test));
 	new->next = NULL;
@@ -37,17 +37,17 @@ int	execute_test(t_unit_test *iter)
 	wait(&status);
 	if (WIFEXITED(status))
 	{
-		if (!!WEXITSTATUS(status))
-			iter->result = ft_strdup("OK");
+		if (0 == status)
+			iter->result = ft_strdup(OK);
 		else
-			iter->result = ft_strdup("KO");
+			iter->result = ft_strdup(KO);
 	}
 	if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == SIGSEGV)
-			iter->result = ft_strdup("SEGV");
+			iter->result = ft_strdup(SEGV);
 		if (WTERMSIG(status) == SIGBUS)
-			iter->result = ft_strdup("BUSE");
+			iter->result = ft_strdup(BUSE);
 	}
 	return (0);
 }
@@ -63,7 +63,7 @@ void	disp_result(t_unit_test *testlist)
 	{
 		all_cnt++;
 		printf("> %s : [%s]\n", testlist->title, testlist->result);
-		if (ft_strcmp("OK", testlist->result))
+		if (ft_strcmp(OK, testlist->result) == 0)
 			ok_cnt++;
 		testlist = testlist->next;
 	}
