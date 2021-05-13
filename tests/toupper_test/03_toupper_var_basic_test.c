@@ -3,10 +3,10 @@
 
 int toupper_basic_var_test(void)
 {
-	char	*string;
+	char	c;
 
-	string = "Answer to the Ultimate Question of Life, the Universe, and Everything";
-	if (ft_toupper(string) == toupper(string))
+	c = 'A';
+	if (ft_toupper(c) == toupper(c))
 		return (0);
 	else
 		return(-1);

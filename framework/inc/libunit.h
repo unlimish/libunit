@@ -25,7 +25,7 @@ typedef struct s_unit_test
 
 void	load_test(t_unit_test **testlist, char *title, int (*test_func)());
 int		launch_tests(t_unit_test **testlist);
-// int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 // size_t	ft_strlen(const char *s);
 // char	*ft_strdup(const char *s1);
 

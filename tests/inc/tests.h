@@ -1,7 +1,8 @@
 #ifndef TESTS_H
 # define TESTS_H
+# include <ctype.h>
 
-#include "../../real_tests/libft/libft.h"
+# include "../../real_tests/libft/libft.h"
 
 int	strlen_launcher(void);
 int	strlen_basic_test(void);

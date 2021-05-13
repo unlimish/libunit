@@ -1,4 +1,5 @@
 #include <string.h>
+#include "../inc/tests.h"
 
 int	strlen_null_test(void)
 {
