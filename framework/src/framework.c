@@ -10,7 +10,7 @@ void	load_test(t_unit_test **testlist, char *title, int (*test_func)())
 	new = malloc(sizeof(t_unit_test));
 	new->next = NULL;
 	new->result = NULL;
-	new->title = ft_strdup(title);
+	new->title = tf_strdup(title);
 	new->func = test_func;
 	if (!new)
 		exit(0);
@@ -38,16 +38,16 @@ int	execute_test(t_unit_test *iter)
 	if (WIFEXITED(status))
 	{
 		if (0 == status)
-			iter->result = ft_strdup(OK);
+			iter->result = tf_strdup(OK);
 		else
-			iter->result = ft_strdup(KO);
+			iter->result = tf_strdup(KO);
 	}
 	if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == SIGSEGV)
-			iter->result = ft_strdup(SEGV);
+			iter->result = tf_strdup(SEGV);
 		if (WTERMSIG(status) == SIGBUS)
-			iter->result = ft_strdup(BUSE);
+			iter->result = tf_strdup(BUSE);
 	}
 	return (0);
 }
@@ -63,7 +63,7 @@ void	disp_result(t_unit_test *testlist)
 	{
 		all_cnt++;
 		printf("> %s : [%s]\n", testlist->title, testlist->result);
-		if (ft_strcmp(OK, testlist->result) == 0)
+		if (tf_strcmp(OK, testlist->result) == 0)
 			ok_cnt++;
 		testlist = testlist->next;
 	}

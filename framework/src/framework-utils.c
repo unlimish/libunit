@@ -1,6 +1,6 @@
 #include "../inc/libunit.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	tf_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
 
@@ -10,13 +10,13 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)*(s1 + i) - (unsigned char)*(s2 + i));
 }
 
-char	*ft_strdup(const char *s1)
+char	*tf_strdup(const char *s1)
 {
 	int		strlen;
 	char	*return_p;
 	char	*dest;
 
-	strlen = ft_strlen(s1);
+	strlen = tf_strlen(s1);
 	return_p = malloc(sizeof(char) * strlen + 1);
 	if (!return_p)
 		return (return_p);
@@ -25,4 +25,14 @@ char	*ft_strdup(const char *s1)
 		*dest++ = *s1++;
 	*dest = 0;
 	return (return_p);
+}
+
+size_t	tf_strlen(const char *s)
+{
+	size_t i;
+
+	i = 0;
+	while (*(s + i))
+		i++;
+	return (i);
 }
