@@ -1,5 +1,7 @@
 *
 */
 !*/
-!framework/src/main.c
+!**/*.c
+!**/*.h
+!**/Makefile
 !.gitignore
