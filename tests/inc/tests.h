@@ -26,6 +26,7 @@ int	atoi_int_max_test(void);
 int	atoi_int_min_test(void);
 
 int	check_launcher(void);
+int	check_ok_test(void);
 int	check_ko_test(void);
 int	check_segv_test(void);
 int	check_buse_test(void);
