@@ -9,10 +9,21 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-# define OK "\x1b[32m OK \x1b[0m"
+# define OK "\x1b[32m  OK \x1b[0m"
 # define KO "\x1b[31m KO \x1b[0m"
 # define SEGV "\x1b[41;37m SEGV \x1b[0m"
 # define BUSE "\x1b[45;37m BUSE \x1b[0m"
+
+#define color(col) printf("\x1b[%dm", col)
+#define RED 31
+#define GREEN 32
+#define BROWN 33
+#define BLUE 34
+#define PURPLE 35
+#define SKY 36
+#define WHITE 37
+#define RESET 0
+#define BOLD 1
 
 typedef struct s_unit_test
 {
