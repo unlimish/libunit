@@ -1,7 +1,7 @@
 #include <string.h>
 #include "../inc/tests.h"
 
-int atoi_int_min_test(void)
+int	atoi_int_min_test(void)
 {
 	char	*c;
 
@@ -9,5 +9,5 @@ int atoi_int_min_test(void)
 	if (ft_atoi(c) == atoi(c))
 		return (0);
 	else
-		return(-1);
+		return (-1);
 }

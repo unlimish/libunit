@@ -1,7 +1,7 @@
 #include <string.h>
 #include "../inc/tests.h"
 
-int toupper_basic_var_test(void)
+int	toupper_basic_var_test(void)
 {
 	char	c;
 
@@ -9,5 +9,5 @@ int toupper_basic_var_test(void)
 	if (ft_toupper(c) == toupper(c))
 		return (0);
 	else
-		return(-1);
+		return (-1);
 }
