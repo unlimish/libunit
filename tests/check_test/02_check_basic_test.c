@@ -8,5 +8,5 @@ int	check_ko_test(void)
 		return (0);
 	}
 	else
-		return(-1);
+		return (-1);
 }

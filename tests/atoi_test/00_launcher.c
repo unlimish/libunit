@@ -10,5 +10,5 @@ int	atoi_launcher(void)
 	load_test(&testlist, "Basic test", &atoi_basic_test);
 	load_test(&testlist, "INT_MAX test", &atoi_int_max_test);
 	load_test(&testlist, "INT_MIN test", &atoi_int_min_test);
-	return(launch_tests(&testlist));
+	return (launch_tests(&testlist));
 }

@@ -11,5 +11,5 @@ int	strlen_launcher(void)
 	load_test(&testlist, "NULL test (expected: SEGV)", &strlen_null_test);
 	load_test(&testlist, "Basic char variable test", &strlen_basic_var_test);
 	color(RESET);
-	return(launch_tests(&testlist));
+	return (launch_tests(&testlist));
 }

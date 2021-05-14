@@ -8,5 +8,5 @@ int	atoi_basic_test(void)
 		return (0);
 	}
 	else
-		return(-1);
+		return (-1);
 }

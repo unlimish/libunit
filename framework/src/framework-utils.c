@@ -1,5 +1,10 @@
 #include "../inc/libunit.h"
 
+void	color(int color_code)
+{
+	printf("\x1b[%dm", color_code);
+}
+
 int	tf_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
@@ -29,7 +34,7 @@ char	*tf_strdup(const char *s1)
 
 size_t	tf_strlen(const char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (*(s + i))

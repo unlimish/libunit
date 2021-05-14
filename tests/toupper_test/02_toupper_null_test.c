@@ -5,9 +5,9 @@
 int	toupper_null_test(void)
 {
 	if (ft_toupper(0) == toupper(0))
-		{
-			return (0);
-		}
+	{
+		return (0);
+	}
 	else
-		return(-1);
+		return (-1);
 }
