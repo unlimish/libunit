@@ -62,7 +62,7 @@ void	disp_result(t_unit_test *testlist)
 	while (testlist)
 	{
 		all_cnt++;
-		printf("> %s : [%s]\n", testlist->title, testlist->result);
+		printf("> %-30s : %5s\n", testlist->title, testlist->result);
 		if (tf_strcmp(OK, testlist->result) == 0)
 			ok_cnt++;
 		testlist = testlist->next;
