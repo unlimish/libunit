@@ -8,12 +8,12 @@ void	load_test(t_unit_test **testlist, char *title, int (*test_func)())
 	printf("\x1b[32m.\x1b[0m");
 	iter = *testlist;
 	new = malloc(sizeof(t_unit_test));
+	if (!new)
+		exit(0);
 	new->next = NULL;
 	new->result = NULL;
 	new->title = tf_strdup(title);
 	new->func = test_func;
-	if (!new)
-		exit(0);
 	if (*testlist == NULL)
 		*testlist = new;
 	else
