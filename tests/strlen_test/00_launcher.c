@@ -10,6 +10,6 @@ int	strlen_launcher(void)
 	load_test(&testlist, "Basic test", &strlen_basic_test);
 	load_test(&testlist, "NULL test (expected: SEGV)", &strlen_null_test);
 	load_test(&testlist, "Basic char variable test", &strlen_basic_var_test);
-	color(RESET);
+	printf("\x1b[m");
 	return(launch_tests(&testlist));
 }

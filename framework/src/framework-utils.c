@@ -29,7 +29,7 @@ char	*tf_strdup(const char *s1)
 
 size_t	tf_strlen(const char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (*(s + i))

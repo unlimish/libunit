@@ -68,7 +68,7 @@ void	disp_result(t_unit_test *testlist)
 		testlist = testlist->next;
 	}
 	if (ok_cnt == all_cnt)
-		color(GREEN);
+		printf("\x1b[33m");
 	printf("\n\x1b[1m%d/%d tests passed\x1b[0m\n\n", ok_cnt, all_cnt);
 }
 
