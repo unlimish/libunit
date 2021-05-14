@@ -10,7 +10,7 @@
 # include <stdio.h>
 
 # define OK "\x1b[32m  OK \x1b[0m"
-# define KO "\x1b[31m KO \x1b[0m"
+# define KO "\x1b[31m  KO \x1b[0m"
 # define SEGV "\x1b[41;37m SEGV \x1b[0m"
 # define BUSE "\x1b[45;37m BUSE \x1b[0m"
 
