@@ -28,10 +28,12 @@ test:
 		@./$(NAME)
 
 clean:
-	${RM} ${OBJS} ${BONUS_OBJS}
+		@${RM} ${OBJS} ${BONUS_OBJS}
+		@printf "\e[31;1mDelete: \e[mtests object files\n"
 fclean: clean
-	${RM} ${NAME}
-	cd "../real_tests/libft" && make fclean
-	cd "../framework" && make fclean
+		@${RM} ${NAME}
+		@printf "\e[31;1mDelete: \e[m./run_test\n"
+		@cd "../real_tests/libft" && make fclean
+		@cd "../framework" && make fclean
 re:	fclean all
 .PHONY: all clean fclean re bonus

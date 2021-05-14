@@ -62,8 +62,8 @@ all: $(NAME)
 $(NAME): $(OBJ)
 		@ar rc $(NAME) $(OBJ)
 		@ar -s $(NAME)
-		@printf ">\e[m"
-		@printf "\n\n"
+		@printf ">"
+		@printf "\n\e[1mlibft.a has been made\e[m\n"
 
 so: libft.so
 
@@ -71,10 +71,12 @@ libft.so: $(OBJ)
 		$(CC) -shared -fPIC -o libft.so $(OBJ)
 
 clean:
-		rm -rf $(OBJ)
+		@rm -rf $(OBJ)
+		@printf "\e[31;1mDelete: \e[mlibft object files\n"
 
 fclean: clean
-		rm -rf $(NAME)
+		@rm -rf $(NAME)
+		@printf "\e[31;1mDelete: \e[mlibft.a\n"
 
 re: fclean all
 
