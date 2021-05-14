@@ -17,7 +17,7 @@ OBJS = ${SRCS:.c=.o}
 
 all: ${NAME}
 
-${NAME}:
+${NAME}: ${SRCS}
 		@cd "../framework" && make
 		@cd "../real_tests/libft" && make
 		@$(CC) $(CFLAGS) -I./inc $(SRCS) -I$(FW_INC) $(FW)  $(FT_AR) -o $(NAME)

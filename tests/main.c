@@ -11,18 +11,18 @@ int	main(int argc, char **argv)
 	puts("(\\|||/)                (_)_\">>");
 	puts("                      /\n");
 	func = "strlen";
-	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func)))
+	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func) + 1))
 		strlen_launcher();
 	func = "toupper";
-	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func)))
+	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func) + 1))
 		toupper_launcher();
 	func = "tolower";
-	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func)))
+	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func) + 1))
 		tolower_launcher();
 	func = "atoi";
-	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func)))
+	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func) + 1))
 		atoi_launcher();
 	func = "check";
-	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func)))
+	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func) + 1))
 		check_launcher();
 }
