@@ -5,7 +5,7 @@ void	load_test(t_unit_test **testlist, char *title, int (*test_func)())
 	t_unit_test	*new;
 	t_unit_test	*iter;
 
-	printf("loaded : [%s]\n", title);
+	printf("\x1b[32m.\x1b[0m");
 	iter = *testlist;
 	new = malloc(sizeof(t_unit_test));
 	new->next = NULL;
