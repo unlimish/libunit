@@ -18,9 +18,14 @@ OBJS = ${SRCS:.c=.o}
 all: ${NAME}
 
 ${NAME}:
-		cd "../framework" && make
-		cd "../real_tests/libft" && make
-		$(CC) $(CFLAGS) -I./inc $(SRCS) -I$(FW_INC) $(FW)  $(FT_AR) -o $(NAME)
+		@cd "../framework" && make
+		@cd "../real_tests/libft" && make
+		@$(CC) $(CFLAGS) -I./inc $(SRCS) -I$(FW_INC) $(FW)  $(FT_AR) -o $(NAME)
+		@printf "\nMake done. Run\e[33;1m ./run_test\e[m \e[33;2mstrlen/toupper/tolower/check\e[m\n"
+
+test:
+		@printf "\nAlso, you can run a specific test\n\t\e[33;1m ./run_test\e[m \e[33;2mstrlen/toupper/tolower/check\e[m\n"
+		@./$(NAME)
 
 clean:
 	${RM} ${OBJS} ${BONUS_OBJS}
