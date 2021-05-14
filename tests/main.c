@@ -15,7 +15,14 @@ int	main(int argc, char **argv)
 		strlen_launcher();
 	func = "toupper";
 	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func)))
-	toupper_launcher();
-
-
+		toupper_launcher();
+	func = "tolower";
+	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func)))
+		tolower_launcher();
+	func = "atoi";
+	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func)))
+		atoi_launcher();
+	func = "check";
+	if ( argc == 1 || 0 == strncmp(argv[1],func, strlen(func)))
+		check_launcher();
 }
