@@ -7,7 +7,13 @@
 int check_buse_test(void)
 {
 	FILE *f = tmpfile();
-    int *m = (int*)mmap(0, 4, PROT_WRITE, MAP_PRIVATE, fileno(f), 0);
-    *m = 0;
-    return (0);
+    int *m;
+    m = (int*)mmap(0, 4, PROT_WRITE, MAP_PRIVATE, fileno(f), 0);
+    if (m)
+    {
+        *m = 0;
+        return (0);
+    }
+    else
+        return (-1);
 }
