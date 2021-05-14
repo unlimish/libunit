@@ -56,11 +56,14 @@ CFLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 %.o:%.c
-		$(CC) $(CFLAGS) -c $< -o $@
+		@$(CC) $(CFLAGS) -c $< -o $@
+		@printf "\e[32m>"
 
 $(NAME): $(OBJ)
-		ar rc $(NAME) $(OBJ)
-		ar -s $(NAME)
+		@ar rc $(NAME) $(OBJ)
+		@ar -s $(NAME)
+		@printf ">\e[m"
+		@printf "\n\n"
 
 so: libft.so
 
