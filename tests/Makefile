@@ -6,7 +6,7 @@ CFLAGS = -Wextra -Wall -Werror
 SRCS =	*_test/*.c \
 		./main.c
 FW = ../framework/libunit.a
-FW_INC = ../framework/inc/libunit.h
+FW_INC = ../framework/inc/
 
 FT_DIR = ../real_tests/libft/
 FT_AR = ../real_tests/libft/libft.a
@@ -18,12 +18,9 @@ OBJS = ${SRCS:.c=.o}
 all: ${NAME}
 
 ${NAME}:
-		cd ../framework && make
-		cd ../real_tests/libft && make
-		$(CC) $(CFLAGS) -I./inc $(SRCS) $(FW_INC) $(FW)  $(FT_AR) -o $(NAME)
-
-make_ft:
-	cd "../real_tests/libft" && make
+		cd "../framework" && make
+		cd "../real_tests/libft" && make
+		$(CC) $(CFLAGS) -I./inc $(SRCS) -I$(FW_INC) $(FW)  $(FT_AR) -o $(NAME)
 
 clean:
 	${RM} ${OBJS} ${BONUS_OBJS}
