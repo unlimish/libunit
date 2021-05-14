@@ -67,7 +67,9 @@ void	disp_result(t_unit_test *testlist)
 			ok_cnt++;
 		testlist = testlist->next;
 	}
-	printf("%d/%d tests checkted\n", ok_cnt, all_cnt);
+	if (ok_cnt == all_cnt)
+		color(GREEN);
+	printf("\x1b[1m%d/%d tests checkted\x1b[0m\n\n", ok_cnt, all_cnt);
 }
 
 void	free_testlist(t_unit_test **testlist)
@@ -98,6 +100,7 @@ int	launch_tests(t_unit_test **testlist)
 		execute_test(iter);
 		iter = iter->next;
 	}
+	printf("\n");
 	disp_result(*testlist);
 	free_testlist(testlist);
 	return (0);
