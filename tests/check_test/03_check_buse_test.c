@@ -6,14 +6,8 @@
 
 int check_buse_test(void)
 {
-	FILE *f = tmpfile();
-    int *m;
-    m = (int*)mmap(0, 4, PROT_WRITE, MAP_PRIVATE, fileno(f), 0);
-    if (m)
-    {
-        *m = 0;
+    if (ft_memcpy("abc", "def", 3))
         return (0);
-    }
     else
         return (-1);
 }
