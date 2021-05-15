@@ -27,5 +27,5 @@ int	main(int argc, char **argv)
 	func = "check";
 	if (argc == 1 || 0 == strncmp(argv[1], func, strlen(func) + 1))
 		ret *= check_launcher();
-	retuen (ret - 1);
+	return (ret - 1);
 }
