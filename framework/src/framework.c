@@ -93,7 +93,7 @@ void	free_testlist(t_unit_test **testlist)
 int	launch_tests(t_unit_test **testlist)
 {
 	t_unit_test	*iter;
-	int ret;
+	int			ret;
 
 	ret = 0;
 	iter = *testlist;
