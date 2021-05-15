@@ -49,7 +49,7 @@ int	execute_test(t_unit_test *iter)
 		if (WTERMSIG(status) == SIGBUS)
 			iter->result = tf_strdup(BUSE);
 	}
-	return (0);
+	return (!tf_strcmp(OK, iter->result) - 1);
 }
 
 void	disp_result(t_unit_test *testlist)
@@ -93,15 +93,17 @@ void	free_testlist(t_unit_test **testlist)
 int	launch_tests(t_unit_test **testlist)
 {
 	t_unit_test	*iter;
+	int ret;
 
+	ret = 0;
 	iter = *testlist;
 	while (iter)
 	{
-		execute_test(iter);
+		ret += execute_test(iter);
 		iter = iter->next;
 	}
 	printf("\n");
 	disp_result(*testlist);
 	free_testlist(testlist);
-	return (0);
+	return (0 == ret);
 }
